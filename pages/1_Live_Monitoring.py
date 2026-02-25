@@ -15,6 +15,7 @@ import pandas as pd
 
 from utils.simulator import generate_vital_snapshot, classify_risk
 from utils.predictor import predict_risk
+from utils.theme import apply_theme
 
 # ── Page config ────────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -23,17 +24,7 @@ st.set_page_config(
     layout="wide",
 )
 
-st.markdown(
-    """
-    <style>
-    .stApp { background: linear-gradient(135deg, #0a0e1a 0%, #0d1b2a 50%, #0a1628 100%); color: #e0e6ed; }
-    section[data-testid="stSidebar"] { background: linear-gradient(180deg, #0d1b2a 0%, #0a1628 100%); border-right: 1px solid #1e3a5f; }
-    div[data-testid="metric-container"] { background: linear-gradient(135deg, #112240 0%, #1a2f4e 100%); border: 1px solid #1e3a5f; border-radius: 8px; padding: 16px; }
-    h1, h2, h3 { color: #64b5f6; }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+apply_theme()
 
 # ── Session state for streaming buffer ────────────────────────────────────────
 BUFFER_SIZE = 60  # keep last 60 data points (~2 min at 2 s intervals)
@@ -95,7 +86,7 @@ color = STATUS_COLOR[status]
 
 # ── Status badge ───────────────────────────────────────────────────────────────
 st.markdown(
-    f"<div style='background:{color}22; border-left:4px solid {color}; border-radius:6px;"
+    f"<div class='pulse-badge' style='background:{color}22; border-left:4px solid {color}; border-radius:6px;"
     f"padding:8px 16px; margin-bottom:12px;'>"
     f"<span style='color:{color}; font-size:18px; font-weight:700;'>&#9679; {status}</span>"
     f"&nbsp;&nbsp;<span style='color:#90a4ae;'>Risk Score: {risk_score:.2f}</span></div>",
