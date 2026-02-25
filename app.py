@@ -15,6 +15,7 @@ import pandas as pd
 
 from utils.simulator import generate_vital_snapshot, classify_risk
 from utils.predictor import predict_risk
+from utils.theme import apply_theme
 
 # ── Page config ────────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -25,41 +26,7 @@ st.set_page_config(
 )
 
 # ── Global CSS ─────────────────────────────────────────────────────────────────
-st.markdown(
-    """
-    <style>
-    /* Dark gradient background */
-    .stApp {
-        background: linear-gradient(135deg, #0a0e1a 0%, #0d1b2a 50%, #0a1628 100%);
-        color: #e0e6ed;
-    }
-    /* Sidebar */
-    section[data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #0d1b2a 0%, #0a1628 100%);
-        border-right: 1px solid #1e3a5f;
-    }
-    /* Metric cards */
-    div[data-testid="metric-container"] {
-        background: linear-gradient(135deg, #112240 0%, #1a2f4e 100%);
-        border: 1px solid #1e3a5f;
-        border-radius: 8px;
-        padding: 16px;
-    }
-    /* Headers */
-    h1, h2, h3 { color: #64b5f6; }
-    /* Divider color */
-    hr { border-color: #1e3a5f; }
-    /* Streamlit default button */
-    .stButton > button {
-        background: linear-gradient(90deg, #1565c0, #0d47a1);
-        color: white;
-        border: none;
-        border-radius: 6px;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+apply_theme()
 
 # ── Sidebar ────────────────────────────────────────────────────────────────────
 with st.sidebar:
@@ -115,7 +82,7 @@ color = STATUS_COLOR[status]
 # ── Status banner ──────────────────────────────────────────────────────────────
 st.markdown(
     f"""
-    <div style='
+    <div class='pulse-badge' style='
         background: linear-gradient(90deg, {color}22, {color}11);
         border-left: 4px solid {color};
         border-radius: 6px;

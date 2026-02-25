@@ -12,6 +12,7 @@ import streamlit as st
 import plotly.graph_objects as go
 
 from utils.predictor import predict_risk
+from utils.theme import apply_theme
 
 # ── Page config ────────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -20,17 +21,7 @@ st.set_page_config(
     layout="wide",
 )
 
-st.markdown(
-    """
-    <style>
-    .stApp { background: linear-gradient(135deg, #0a0e1a 0%, #0d1b2a 50%, #0a1628 100%); color: #e0e6ed; }
-    section[data-testid="stSidebar"] { background: linear-gradient(180deg, #0d1b2a 0%, #0a1628 100%); border-right: 1px solid #1e3a5f; }
-    h1, h2, h3 { color: #64b5f6; }
-    .stSlider > div { color: #90a4ae; }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+apply_theme()
 
 # ── Header ─────────────────────────────────────────────────────────────────────
 st.markdown(
@@ -96,7 +87,7 @@ with col_results:
     # Status card
     st.markdown(
         f"""
-        <div style='
+        <div class='pulse-badge' style='
             background: linear-gradient(135deg, {bg}55, {bg}22);
             border: 2px solid {color};
             border-radius: 10px;

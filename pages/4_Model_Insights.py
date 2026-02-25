@@ -16,6 +16,7 @@ from sklearn.model_selection import cross_val_score
 
 from utils.predictor import load_model, get_feature_importances, get_model_info
 from utils.simulator import generate_patient_dataset, FEATURE_COLUMNS
+from utils.theme import apply_theme
 
 # ── Page config ────────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -24,17 +25,7 @@ st.set_page_config(
     layout="wide",
 )
 
-st.markdown(
-    """
-    <style>
-    .stApp { background: linear-gradient(135deg, #0a0e1a 0%, #0d1b2a 50%, #0a1628 100%); color: #e0e6ed; }
-    section[data-testid="stSidebar"] { background: linear-gradient(180deg, #0d1b2a 0%, #0a1628 100%); border-right: 1px solid #1e3a5f; }
-    h1, h2, h3 { color: #64b5f6; }
-    div[data-testid="metric-container"] { background: linear-gradient(135deg, #112240 0%, #1a2f4e 100%); border: 1px solid #1e3a5f; border-radius: 8px; padding: 16px; }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+apply_theme()
 
 # ── Load model data ────────────────────────────────────────────────────────────
 @st.cache_data
